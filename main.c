@@ -26,11 +26,11 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
             vec[i] = (vec[i] >> bitShift) | carry;
             carry = nextCarry;
         }
-        if (byteShift > 0) {
+        int tailBits = bits % 8;
+        if (byteShift > 0 || tailBits == 0) {
             vec[i] = (vec[i] >> bitShift) | carry;
         }
         else {
-            int tailBits = bits % 8;
             vec[i] = vec[i] >> bitShift;
             vec[i] = carry | (vec[i] << (8 - tailBits));
             vec[i] = vec[i] >> (8 - tailBits);
@@ -39,5 +39,28 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
 }
 int main()
 {
+    //normal shift
+    //char str[] = "11110000";
+    //char str[] = "08283490jfij4r891092491243";
+    //char str[] = "87123908jc1309123=cx1zk121s12312392834ucu0j3134u1092cu4j3c8u124cu9ghfugoiug8urg8egaerg";
+    //char str[] = "11111111111111111111000000000000000000000000000";
+    //char str[] = "1010001111110000";
+    //char str[] = "11110000";
+    //char str[] = "11110000";
+    //char str[] = "11110000";
+    char str[] = "111100011011";
+    int cells = 0;
+    int bits = strlen(str);
+    unsigned char* vec = convertStrToLongBV(str, &cells);
+    printf("Original: ");
+    printBV(vec, cells);
+
+    int k = 2;
+
+    shiftRight(vec, bits, k);
+    //shift >= bits
+    //shiftRight(vec, bits, bits + 100);
+    printf("Shifted : ");
+    printBV(vec, cells);
     return 0;
 }
