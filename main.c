@@ -41,6 +41,15 @@ char* convertBvToStr(unsigned char* vec, size_t size) {
     }
     return NULL;
 }
+void printBV(unsigned char* vec, size_t cells) {
+    if (vec && cells < vecMaxSize) {
+        char* str = convertBvToStr(vec, cells);
+        if (str) {
+            printf("%s\n", str);
+            free(str);
+        }
+    }
+}
 int main()
 {
     printf("Hello World!\n");
