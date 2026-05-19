@@ -52,6 +52,100 @@ void printBV(unsigned char* vec, size_t cells) {
 }
 int main()
 {
-    printf("Hello World!\n");
+//normal str
+    // char str[] = "00111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
+//leading zeroes skip
+    char str[] = "0000000000000000000000000111111111";
+    int cells = 0;
+    unsigned char* vect = convertStrToLongBV(str, &cells);
+    printf("Original string is %s \t cells: %d\n", str, cells);
+    printf("StrToBV: ");
+    printBV(vect, cells);
+    char* res = convertBvToStr(vect, cells);
+    printf("BvToStr: %s", res);
+//big str with letters and symbols
+    // char str[] = "4586468251685451841212sfa8sgslkk32@##*&*_$@I#$JN000dsf000123lkksdjf00000234987948/*--+++     sdkjfsknv \n \t ";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
+//empty str
+    // char str[] = "";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
+//null str
+    // char str[] = "";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(NULL, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
+//null cells
+    // char str[] = "00111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, NULL);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
+
+//BvToStr test
+//cells > 1000
+    // char str[] = "00111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, 2000);
+    // printf("BvToStr: %s", res);
+//null vect
+    // char str[] = "00111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(NULL, cells);
+    // printf("BvToStr: %s", res);
+
+//PrintBV test
+//null vect
+    // char str[] = "00111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(NULL, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
+//cells > 1000
+    // char str[] = "00111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, 20000);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
     return 0;
 }
+
