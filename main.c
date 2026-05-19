@@ -93,7 +93,18 @@ void set0(unsigned char* vec, size_t bits, size_t k) {
         vec[byte] = vec[byte] & mask;
     }
 }
+unsigned char* sumMod2(unsigned char* vecA, size_t bitsA, unsigned char* vecB, size_t bitsB) {
+    if ((!vecA && !vecB) || (bitsA != bitsB)) return NULL;
+    if (!vecA) return vecB;
+    if (!vecB) return vecA;
 
+    int cells = ((bitsA - 1) / 8) + 1;
+
+    unsigned char* res = (unsigned char*)calloc(cells, sizeof(unsigned char));
+
+    for (int i = 0; i < cells; i++) res[i] = vecA[i] ^ vecB[i];
+    return res;
+}
 int main()
 {
 //normal str
@@ -258,6 +269,102 @@ int main()
     // printBV(vec, cells);
 
 
+
+//normal sum
+    // char strA[] = "00111111111";
+    // int cellsA = 0;
+    // char strB[] = "00111111111";
+    // int cellsB = 0;
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+
+    // char strA[] = "10101111101";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+//vecA is null
+    // char strA[] = "10101111101";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(NULL, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+//vecB is null
+    // char strA[] = "10101111101";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, NULL, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+
+//length differ
+    // char strA[] = "10101111101111111111111111111111";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
 
     return 0;
 }
