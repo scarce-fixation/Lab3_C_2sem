@@ -680,18 +680,22 @@ int main()
     //char str[] = "11110000";
     //tail inversion
     //char str[] = "111100011011";
-    int cells = 0;
-    int bits = strlen(str);
-    unsigned char* vec = convertStrToLongBV(str, &cells);
-    printf("Original: ");
-    printBV(vec, cells);
-    //vec is null
-    //inversion(NULL, bits);
-    //bits is negative size_t 64 bits
-    //inversion(vec, -1000);
-    inversion(vec, bits);
-    printf("Inverted: ");
-    printBV(vec, cells);
+
+
+    // int cells = 0;
+    // int bits = strlen(str);
+    // unsigned char* vec = convertStrToLongBV(str, &cells);
+    // printf("Original: ");
+    // printBV(vec, cells);
+    // //vec is null
+    // //inversion(NULL, bits);
+    // //bits is negative size_t 64 bits
+    // //inversion(vec, -1000);
+    // inversion(vec, bits);
+    // printf("Inverted: ");
+    // printBV(vec, cells);
+
+//SHIFTRIGHT
 
     //normal shift
     // printf("Original: ");
@@ -702,6 +706,20 @@ int main()
     // shiftRight(vec, bits, k);
     // //shift >= bits
     // //shiftRight(vec, bits, bits + 100);
+    // printf("Shifted : ");
+    // printBV(vec, cells);
+
+//SHIFTLEFT
+
+    //normal shift
+    // printf("Original: ");
+    // printBV(vec, cells);
+
+    // int k = 2;
+
+    // shiftLeft(vec, bits, k);
+    // //shift >= bits
+    // //shiftLeft(vec, bits, bits + 100);
     // printf("Shifted : ");
     // printBV(vec, cells);
     return 0;
