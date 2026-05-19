@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<string.h>
-#define vecMaxSize 1000
 unsigned char* convertStrToLongBV(char* str, int* cells) {
     if (str && cells) {
         unsigned char mask = 1;
@@ -15,14 +14,13 @@ unsigned char* convertStrToLongBV(char* str, int* cells) {
                 if (str[sI] != '0') vec[i] = vec[i] | mask;
             }
         }
-
         return vec;
     }
     return NULL;
 }
 char* convertBvToStr(unsigned char* vec, size_t size) {
     char* str = NULL;
-    if (vec && size < vecMaxSize) {
+    if (vec) {
         int len = 8*size + 1;
         int i = 0;
         str = (char*)malloc(len);
@@ -42,7 +40,7 @@ char* convertBvToStr(unsigned char* vec, size_t size) {
     return NULL;
 }
 void printBV(unsigned char* vec, size_t cells) {
-    if (vec && cells < vecMaxSize) {
+    if (vec) {
         char* str = convertBvToStr(vec, cells);
         if (str) {
             printf("%s\n", str);
@@ -70,7 +68,6 @@ void set1(unsigned char* vec, size_t bits, size_t k) {
         vec[byte] = vec[byte] | mask;
     }
 }
-
 void set0(unsigned char* vec, size_t bits, size_t k) {
     if (vec && (k > 0 && k < bits)) {
         int cells = ((bits - 1) / 8) + 1;
@@ -97,11 +94,8 @@ unsigned char* sumMod2(unsigned char* vecA, size_t bitsA, unsigned char* vecB, s
     if ((!vecA && !vecB) || (bitsA != bitsB)) return NULL;
     if (!vecA) return vecB;
     if (!vecB) return vecA;
-
     int cells = ((bitsA - 1) / 8) + 1;
-
     unsigned char* res = (unsigned char*)calloc(cells, sizeof(unsigned char));
-
     for (int i = 0; i < cells; i++) res[i] = vecA[i] ^ vecB[i];
     return res;
 }
@@ -116,15 +110,15 @@ int main()
     // printBV(vect, cells);
     // char* res = convertBvToStr(vect, cells);
     // printf("BvToStr: %s", res);
-//leading zeroes skip
-    char str[] = "0000000000000000000000000111111111";
-    int cells = 0;
-    unsigned char* vect = convertStrToLongBV(str, &cells);
-    printf("Original string is %s \t cells: %d\n", str, cells);
-    printf("StrToBV: ");
-    printBV(vect, cells);
-    char* res = convertBvToStr(vect, cells);
-    printf("BvToStr: %s", res);
+//leading zeroes
+    // char str[] = "0000000000000000000000000111111111";
+    // int cells = 0;
+    // unsigned char* vect = convertStrToLongBV(str, &cells);
+    // printf("Original string is %s \t cells: %d\n", str, cells);
+    // printf("StrToBV: ");
+    // printBV(vect, cells);
+    // char* res = convertBvToStr(vect, cells);
+    // printf("BvToStr: %s", res);
 //big str with letters and symbols
     // char str[] = "4586468251685451841212sfa8sgslkk32@##*&*_$@I#$JN000dsf000123lkksdjf00000234987948/*--+++     sdkjfsknv \n \t ";
     // int cells = 0;
