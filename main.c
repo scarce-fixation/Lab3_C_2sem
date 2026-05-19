@@ -16,6 +16,102 @@ unsigned char* sumMod2(unsigned char* vecA, size_t bitsA, unsigned char* vecB, s
 }
 int main()
 {
-    printf("Hello World!\n");
+//normal sum
+    // char strA[] = "00111111111";
+    // int cellsA = 0;
+    // char strB[] = "00111111111";
+    // int cellsB = 0;
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+
+    // char strA[] = "10101111101";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+//vecA is null
+    // char strA[] = "10101111101";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(NULL, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+//vecB is null
+    // char strA[] = "10101111101";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, NULL, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+
+//length differ
+    // char strA[] = "10101111101111111111111111111111";
+    // int cellsA = 0;
+    // char strB[] = "00111010110";
+    // int cellsB = 0;
+
+    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+    // size_t bitsA = strlen(strA);
+    // size_t bitsB = strlen(strB);
+
+    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+    // printf("\nvecA is ");
+    // printBV(vecA, cellsA);
+    // printf("vecB is ");
+    // printBV(vecB, cellsB);
+    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+    // printf("\nRes is  ");
+    // printBV(res, cellsA);
+
     return 0;
 }
+
