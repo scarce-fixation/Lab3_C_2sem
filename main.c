@@ -3,15 +3,16 @@
 #include<string.h>
 unsigned char* convertStrToLongBV(char* str, int* cells) {
     if (str && cells) {
-        unsigned char mask = 1;
+
         int len = strlen(str);
         int sI = 0;
         *cells = ((len - 1) / 8) + 1;
         unsigned char* vec = (unsigned char*)calloc(*cells, sizeof(unsigned char));
         for (int i = 0; i < *cells; i++) {
+            unsigned char mask = 1 << 7;
             for (int j = 0; j < 8 && sI < len; j++, sI++) {
-                vec[i] = vec[i] << 1;
                 if (str[sI] != '0') vec[i] = vec[i] | mask;
+                mask >>= 1;
             }
         }
         return vec;
@@ -21,7 +22,7 @@ unsigned char* convertStrToLongBV(char* str, int* cells) {
 char* convertBvToStr(unsigned char* vec, size_t size) {
     char* str = NULL;
     if (vec) {
-        int len = 8*size + 1;
+        int len = 8 * size + 1;
         int i = 0;
         str = (char*)malloc(len);
         if (str) {
@@ -57,16 +58,6 @@ void set1(unsigned char* vec, size_t bits, size_t k) {
         int cells = ((bits - 1) / 8) + 1;
         int byte = k / 8;
         int bit = k % 8;
-        if (byte == cells - 1) {
-            int tailBits = bits % 8;
-            if (tailBits > 0) {
-                unsigned char mask = 1;
-                mask = mask << 8 - bit;
-                vec[byte] = (vec[byte] << 8 - tailBits) | mask;
-                vec[byte] >>= (8 - tailBits);
-                return;
-            }
-        }
         unsigned char mask = 1;
         mask = mask << 8 - bit;
         vec[byte] = vec[byte] | mask;
@@ -77,17 +68,6 @@ void set0(unsigned char* vec, size_t bits, size_t k) {
         int cells = ((bits - 1) / 8) + 1;
         int byte = k / 8;
         int bit = k % 8;
-        if (byte == cells - 1) {
-            int tailBits = bits % 8;
-            if (tailBits > 0) {
-                unsigned char mask = 1;
-                mask = mask << 8 - bit;
-                mask = ~mask;
-                vec[byte] = (vec[byte] << 8 - tailBits) & mask;
-                vec[byte] >>= (8 - tailBits);
-                return;
-            }
-        }
         unsigned char mask = 1;
         mask = mask << 8 - bit;
         mask = ~mask;
@@ -139,6 +119,7 @@ void shiftLeft(unsigned char* vec, size_t bits, size_t k) {
             vec[i] = 0;
         }
     }
+
     if (bitShift > 0) {
         unsigned char carry = 0;
         int i = cells - 1 - byteShift;
@@ -146,10 +127,8 @@ void shiftLeft(unsigned char* vec, size_t bits, size_t k) {
         unsigned char tail = 0;
         tail = vec[i];
         if (tailBits > 0) {
-            tail = tail << (8 - tailBits);
             carry = tail >> (8 - bitShift);
             tail = tail << bitShift;
-            tail = tail >> (8 - tailBits);
         }
         else {
             carry = tail >> (8 - bitShift);
@@ -177,7 +156,7 @@ void inversion(unsigned char* vec, size_t bits) {
         vec[i] = ~result;
     }
     int tailBits = bits % 8;
-    if(tailBits != 0) vec[cells - 1] >>= (8 - tailBits);
+    if (tailBits != 0) vec[cells - 1] <<= (8 - tailBits);
 }
 void shiftRight(unsigned char* vec, size_t bits, size_t k) {
     if (!vec || bits <= 0 || k <= 0) return;
@@ -199,7 +178,7 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
         k = k - tailBits;
         bitShift = k % 8;
     }
-    
+
 
     if (bitShift > 0) {
         unsigned char carry = 0;
@@ -214,9 +193,9 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
             vec[i] = (vec[i] >> bitShift) | carry;
         }
         else {
+            vec[i] = vec[i] >> (8 - tailBits );
             vec[i] = vec[i] >> bitShift;
             vec[i] = carry | (vec[i] << (8 - tailBits));
-            vec[i] = vec[i] >> (8 - tailBits);
         }
     }
 }
