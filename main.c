@@ -39,6 +39,10 @@ char* convertBvToStr(unsigned char* vec, size_t size) {
     }
     return NULL;
 }
+// itoa integer to ascii
+// char buffer[9];
+// itoa(val, buffer, 2); // 2 = base
+// printf("%s", buffer);
 void printBV(unsigned char* vec, size_t cells) {
     if (vec) {
         char* str = convertBvToStr(vec, cells);
@@ -49,7 +53,7 @@ void printBV(unsigned char* vec, size_t cells) {
     }
 }
 void set1(unsigned char* vec, size_t bits, size_t k) {
-    if (vec && (k > 0 && k < bits)) {
+    if (vec && (k > 0 && k <= bits)) {
         int cells = ((bits - 1) / 8) + 1;
         int byte = k / 8;
         int bit = k % 8;
@@ -58,7 +62,7 @@ void set1(unsigned char* vec, size_t bits, size_t k) {
             if (tailBits > 0) {
                 unsigned char mask = 1;
                 mask = mask << 8 - bit;
-                vec[byte] = (vec[byte] << 8-tailBits) | mask;
+                vec[byte] = (vec[byte] << 8 - tailBits) | mask;
                 vec[byte] >>= (8 - tailBits);
                 return;
             }
@@ -69,7 +73,7 @@ void set1(unsigned char* vec, size_t bits, size_t k) {
     }
 }
 void set0(unsigned char* vec, size_t bits, size_t k) {
-    if (vec && (k > 0 && k < bits)) {
+    if (vec && (k > 0 && k <= bits)) {
         int cells = ((bits - 1) / 8) + 1;
         int byte = k / 8;
         int bit = k % 8;
@@ -182,6 +186,7 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
         for (int i = 0; i < cells; i++) vec[i] = 0;
         return;
     }
+    int tailBits = bits % 8;
     int byteShift = k / 8;
     int bitShift = k % 8;
     if (byteShift > 0) {
@@ -191,7 +196,11 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
         for (int i = 0; i < byteShift; i++) {
             vec[i] = 0;
         }
+        k = k - tailBits;
+        bitShift = k % 8;
     }
+    
+
     if (bitShift > 0) {
         unsigned char carry = 0;
         int i = byteShift;
@@ -200,7 +209,7 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
             vec[i] = (vec[i] >> bitShift) | carry;
             carry = nextCarry;
         }
-        int tailBits = bits % 8;
+
         if (byteShift > 0 || tailBits == 0) {
             vec[i] = (vec[i] >> bitShift) | carry;
         }
