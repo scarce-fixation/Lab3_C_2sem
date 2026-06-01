@@ -55,21 +55,19 @@ void printBV(unsigned char* vec, size_t cells) {
 }
 void set1(unsigned char* vec, size_t bits, size_t k) {
     if (vec && (k > 0 && k <= bits)) {
-        int cells = ((bits - 1) / 8) + 1;
         int byte = k / 8;
         int bit = k % 8;
         unsigned char mask = 1;
-        mask = mask << 8 - bit;
+        mask = mask << (8 - bit);
         vec[byte] = vec[byte] | mask;
     }
 }
 void set0(unsigned char* vec, size_t bits, size_t k) {
     if (vec && (k > 0 && k <= bits)) {
-        int cells = ((bits - 1) / 8) + 1;
         int byte = k / 8;
         int bit = k % 8;
         unsigned char mask = 1;
-        mask = mask << 8 - bit;
+        mask = mask << (8 - bit);
         mask = ~mask;
         vec[byte] = vec[byte] & mask;
     }
@@ -123,17 +121,12 @@ void shiftLeft(unsigned char* vec, size_t bits, size_t k) {
     if (bitShift > 0) {
         unsigned char carry = 0;
         int i = cells - 1 - byteShift;
-        int tailBits = bits % 8;
         unsigned char tail = 0;
         tail = vec[i];
-        if (tailBits > 0) {
-            carry = tail >> (8 - bitShift);
-            tail = tail << bitShift;
-        }
-        else {
-            carry = tail >> (8 - bitShift);
-            tail = tail << bitShift;
-        }
+
+        carry = tail >> (8 - bitShift);
+        tail = tail << bitShift;
+        
         vec[i] = tail;
         i--;
         for (; i >= 0; i--) {
