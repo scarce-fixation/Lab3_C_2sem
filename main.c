@@ -45,12 +45,18 @@ char* convertBvToStr(unsigned char* vec, size_t size) {
 // itoa(val, buffer, 2); // 2 = base
 // printf("%s", buffer);
 void printBV(unsigned char* vec, size_t cells) {
-    if (vec) {
-        char* str = convertBvToStr(vec, cells);
-        if (str) {
-            printf("%s\n", str);
-            free(str);
+    if (vec && cells !=0) {
+        int len = 8 * cells + 1;
+        int i = 0;
+        for (int vI = 0; vI < cells; vI++) {
+            unsigned char mask = 1 << 7;
+            for (int j = 0; j < 8 && i < len - 1; j++, i++) {
+                if ((vec[vI] & mask) != 0)printf("1");
+                else printf("0");
+                mask = mask >> 1;
+            }
         }
+        printf("\n");
     }
 }
 void set1(unsigned char* vec, size_t bits, size_t k) {
@@ -186,7 +192,6 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
             vec[i] = (vec[i] >> bitShift) | carry;
         }
         else {
-            unsigned char n = vec[i];
             vec[i] = vec[i] >> bitShift;
             vec[i] = carry | vec[i];
             vec[i] = vec[i] >> (8 - tailBits);
