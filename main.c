@@ -126,7 +126,7 @@ void shiftLeft(unsigned char* vec, size_t bits, size_t k) {
 
         carry = tail >> (8 - bitShift);
         tail = tail << bitShift;
-        
+
         vec[i] = tail;
         i--;
         for (; i >= 0; i--) {
@@ -186,472 +186,474 @@ void shiftRight(unsigned char* vec, size_t bits, size_t k) {
             vec[i] = (vec[i] >> bitShift) | carry;
         }
         else {
-            vec[i] = vec[i] >> (8 - tailBits );
+            unsigned char n = vec[i];
             vec[i] = vec[i] >> bitShift;
-            vec[i] = carry | (vec[i] << (8 - tailBits));
+            vec[i] = carry | vec[i];
+            vec[i] = vec[i] >> (8 - tailBits);
+            vec[i] = (vec[i] << (8 - tailBits));
         }
     }
 }
 int main()
 {
-//normal str
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-//leading zeroes
-    // char str[] = "0000000000000000000000000111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-//big str with letters and symbols
-    // char str[] = "4586468251685451841212sfa8sgslkk32@##*&*_$@I#$JN000dsf000123lkksdjf00000234987948/*--+++     sdkjfsknv \n \t ";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-//empty str
-    // char str[] = "";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-//null str
-    // char str[] = "";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(NULL, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-//null cells
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, NULL);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
+    //normal str
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
+    //leading zeroes
+        // char str[] = "0000000000000000000000000111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
+    //big str with letters and symbols
+        // char str[] = "4586468251685451841212sfa8sgslkk32@##*&*_$@I#$JN000dsf000123lkksdjf00000234987948/*--+++     sdkjfsknv \n \t ";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
+    //empty str
+        // char str[] = "";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
+    //null str
+        // char str[] = "";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(NULL, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
+    //null cells
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, NULL);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
 
-//BvToStr test
-//cells > 1000
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(vect, 2000);
-    // printf("BvToStr: %s", res);
-//null vect
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, cells);
-    // char* res = convertBvToStr(NULL, cells);
-    // printf("BvToStr: %s", res);
+    //BvToStr test
+    //cells > 1000
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(vect, 2000);
+        // printf("BvToStr: %s", res);
+    //null vect
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, cells);
+        // char* res = convertBvToStr(NULL, cells);
+        // printf("BvToStr: %s", res);
 
-//PrintBV test
-//null vect
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(NULL, cells);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-//cells > 1000
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // unsigned char* vect = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d\n", str, cells);
-    // printf("StrToBV: ");
-    // printBV(vect, 20000);
-    // char* res = convertBvToStr(vect, cells);
-    // printf("BvToStr: %s", res);
-
-
-//SET
-
-  //normal set
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // size_t bits = strlen(str);
-    // unsigned char* vec = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
-    // printf("StrToBV: ");
-    // printBV(vec, cells);
-
-    // set1(vec, bits, 1);
-    // printf("Res1:    ");
-    // printBV(vec, cells);
-    // set0(vec, bits, 1);
-    // printf("Res0:    ");
-    // printBV(vec, cells);
-
-  //set in tail
-    // char str[] = "00111111111";
-    // int cells = 0;
-    // size_t bits = strlen(str);
-    // unsigned char* vec = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
-    // printf("StrToBV: ");
-    // printBV(vec, cells);
-
-    // set1(vec, bits, 10);
-    // printf("Res1:    ");
-    // printBV(vec, cells);
-    // set0(vec, bits, 9);
-    // printf("Res0:    ");
-    // printBV(vec, cells);
+    //PrintBV test
+    //null vect
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(NULL, cells);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
+    //cells > 1000
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // unsigned char* vect = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d\n", str, cells);
+        // printf("StrToBV: ");
+        // printBV(vect, 20000);
+        // char* res = convertBvToStr(vect, cells);
+        // printf("BvToStr: %s", res);
 
 
-    // char str[] = "165488420000001115548";
-    // int cells = 0;
-    // size_t bits = strlen(str);
-    // unsigned char* vec = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
-    // printf("StrToBV: ");
-    // printBV(vec, cells);
+    //SET
 
-    // set1(vec, bits, 16);
-    // printf("Res1:    ");
-    // printBV(vec, cells);
-    // set0(vec, bits, 19);
-    // printf("Res0:    ");
-    // printBV(vec, cells);
+      //normal set
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // size_t bits = strlen(str);
+        // unsigned char* vec = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
+        // printf("StrToBV: ");
+        // printBV(vec, cells);
 
-    // char str[] = "84787ghguguygb";
-    // int cells = 0;
-    // size_t bits = strlen(str);
-    // unsigned char* vec = convertStrToLongBV(str, &cells);
-    // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
-    // printf("StrToBV: ");
-    // printBV(vec, cells);
+        // set1(vec, bits, 1);
+        // printf("Res1:    ");
+        // printBV(vec, cells);
+        // set0(vec, bits, 1);
+        // printf("Res0:    ");
+        // printBV(vec, cells);
 
-    // set1(vec, bits, 10);
-    // printf("Res1:    ");
-    // printBV(vec, cells);
-    // set0(vec, bits, 9);
-    // printf("Res0:    ");
-    // printBV(vec, cells);
+      //set in tail
+        // char str[] = "00111111111";
+        // int cells = 0;
+        // size_t bits = strlen(str);
+        // unsigned char* vec = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
+        // printf("StrToBV: ");
+        // printBV(vec, cells);
 
-//SUM
-
-//normal sum
-    // char strA[] = "00111111111";
-    // int cellsA = 0;
-    // char strB[] = "00111111111";
-    // int cellsB = 0;
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-//vecA is null
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = sumMod2(NULL, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-//vecB is null
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = sumMod2(vecA, bitsA, NULL, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-//length differ
-    // char strA[] = "10101111101111111111111111111111";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-//normal sum
-    // char strA[] = "00111111111";
-    // int cellsA = 0;
-    // char strB[] = "00111111111";
-    // int cellsB = 0;
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logSum(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logSum(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-//vecA is null
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logSum(NULL, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-//vecB is null
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logSum(vecA, bitsA, NULL, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-//length differ
-    // char strA[] = "10101111101111111111111111111111";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logSum(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-//MUL
-
-//normal mul
-    // char strA[] = "00111111111";
-    // int cellsA = 0;
-    // char strB[] = "00111111111";
-    // int cellsB = 0;
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logMul(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logMul(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-//vecA is null
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logMul(NULL, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-//vecB is null
-    // char strA[] = "10101111101";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logMul(vecA, bitsA, NULL, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-//length differ
-    // char strA[] = "10101111101111111111111111111111";
-    // int cellsA = 0;
-    // char strB[] = "00111010110";
-    // int cellsB = 0;
-
-    // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
-    // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
-    // size_t bitsA = strlen(strA);
-    // size_t bitsB = strlen(strB);
-
-    // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
-
-    // printf("\nvecA is ");
-    // printBV(vecA, cellsA);
-    // printf("vecB is ");
-    // printBV(vecB, cellsB);
-    // unsigned char* res = logMul(vecA, bitsA, vecB, bitsB);
-    // printf("\nRes is  ");
-    // printBV(res, cellsA);
-
-//INVERSION
+        // set1(vec, bits, 10);
+        // printf("Res1:    ");
+        // printBV(vec, cells);
+        // set0(vec, bits, 9);
+        // printf("Res0:    ");
+        // printBV(vec, cells);
 
 
-    //normal inversion
-    //char str[] = "11110000";
+        // char str[] = "165488420000001115548";
+        // int cells = 0;
+        // size_t bits = strlen(str);
+        // unsigned char* vec = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
+        // printf("StrToBV: ");
+        // printBV(vec, cells);
+
+        // set1(vec, bits, 16);
+        // printf("Res1:    ");
+        // printBV(vec, cells);
+        // set0(vec, bits, 19);
+        // printf("Res0:    ");
+        // printBV(vec, cells);
+
+        // char str[] = "84787ghguguygb";
+        // int cells = 0;
+        // size_t bits = strlen(str);
+        // unsigned char* vec = convertStrToLongBV(str, &cells);
+        // printf("Original string is %s \t cells: %d \t bits: %d\n", str, cells, bits);
+        // printf("StrToBV: ");
+        // printBV(vec, cells);
+
+        // set1(vec, bits, 10);
+        // printf("Res1:    ");
+        // printBV(vec, cells);
+        // set0(vec, bits, 9);
+        // printf("Res0:    ");
+        // printBV(vec, cells);
+
+    //SUM
+
+    //normal sum
+        // char strA[] = "00111111111";
+        // int cellsA = 0;
+        // char strB[] = "00111111111";
+        // int cellsB = 0;
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+    //vecA is null
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = sumMod2(NULL, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+    //vecB is null
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = sumMod2(vecA, bitsA, NULL, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+    //length differ
+        // char strA[] = "10101111101111111111111111111111";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = sumMod2(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+    //normal sum
+        // char strA[] = "00111111111";
+        // int cellsA = 0;
+        // char strB[] = "00111111111";
+        // int cellsB = 0;
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logSum(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logSum(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+    //vecA is null
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logSum(NULL, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+    //vecB is null
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logSum(vecA, bitsA, NULL, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+    //length differ
+        // char strA[] = "10101111101111111111111111111111";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logSum(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+    //MUL
+
+    //normal mul
+        // char strA[] = "00111111111";
+        // int cellsA = 0;
+        // char strB[] = "00111111111";
+        // int cellsB = 0;
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logMul(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logMul(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+    //vecA is null
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logMul(NULL, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+    //vecB is null
+        // char strA[] = "10101111101";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logMul(vecA, bitsA, NULL, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+    //length differ
+        // char strA[] = "10101111101111111111111111111111";
+        // int cellsA = 0;
+        // char strB[] = "00111010110";
+        // int cellsB = 0;
+
+        // unsigned char* vecA = convertStrToLongBV(strA, &cellsA);
+        // unsigned char* vecB = convertStrToLongBV(strB, &cellsB);
+        // size_t bitsA = strlen(strA);
+        // size_t bitsB = strlen(strB);
+
+        // printf("StringA is %s\t cells: %d\nStringB is %s \t cells: %d\n", strA, cellsA, strB, cellsB);
+
+        // printf("\nvecA is ");
+        // printBV(vecA, cellsA);
+        // printf("vecB is ");
+        // printBV(vecB, cellsB);
+        // unsigned char* res = logMul(vecA, bitsA, vecB, bitsB);
+        // printf("\nRes is  ");
+        // printBV(res, cellsA);
+
+    //INVERSION
+
+
+        //normal inversion
+    char str[] = "111111111";
     //char str[] = "08283490jfij4r891092491243";
     //char str[] = "87123908jc1309123=cx1zk121s12312392834ucu0j3134u1092cu4j3c8u124cu9ghfugoiug8urg8egaerg";
     //char str[] = "11111111111111111111000000000000000000000000000";
@@ -663,9 +665,11 @@ int main()
     //char str[] = "111100011011";
 
 
-    // int cells = 0;
-    // int bits = strlen(str);
-    // unsigned char* vec = convertStrToLongBV(str, &cells);
+    int cells = 0;
+    int bits = strlen(str);
+    unsigned char* vec = convertStrToLongBV(str, &cells);
+
+
     // printf("Original: ");
     // printBV(vec, cells);
     // //vec is null
@@ -679,30 +683,30 @@ int main()
 //SHIFTRIGHT
 
     //normal shift
-    // printf("Original: ");
-    // printBV(vec, cells);
+    printf("Original: ");
+    printBV(vec, cells);
 
-    // int k = 2;
+    int k = 2;
 
-    // shiftRight(vec, bits, k);
-    // //shift >= bits
-    // //shiftRight(vec, bits, bits + 100);
-    // printf("Shifted : ");
-    // printBV(vec, cells);
+    shiftRight(vec, bits, k);
+    //shift >= bits
+    //shiftRight(vec, bits, bits + 100);
+    printf("Shifted : ");
+    printBV(vec, cells);
 
-//SHIFTLEFT
+    //SHIFTLEFT
 
-    //normal shift
-    // printf("Original: ");
-    // printBV(vec, cells);
+        //normal shift
+        // printf("Original: ");
+        // printBV(vec, cells);
 
-    // int k = 2;
+        // int k = 2;
 
-    // shiftLeft(vec, bits, k);
-    // //shift >= bits
-    // //shiftLeft(vec, bits, bits + 100);
-    // printf("Shifted : ");
-    // printBV(vec, cells);
+        // shiftLeft(vec, bits, k);
+        // //shift >= bits
+        // //shiftLeft(vec, bits, bits + 100);
+        // printf("Shifted : ");
+        // printBV(vec, cells);
     return 0;
 }
 
